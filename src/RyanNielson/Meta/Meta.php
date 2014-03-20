@@ -1,19 +1,23 @@
-<?php namespace RyanNielson\Meta;
+<?php
 
-class Meta {
+namespace RyanNielson\Meta;
 
+class Meta
+{
     /**
      * The current stored meta attributes to be rendered at a later stage.
+     *
      * @var array
      */
-    private $attributes = array();
+    protected $attributes = array();
 
     /**
      * Sets the meta attributes.
+     *
      * @param array $attributes
      * @return array
      */
-    public function set($attributes = array())
+    public function set(array $attributes = array())
     {
         $this->attributes = array_replace_recursive($this->attributes, $attributes);
 
@@ -21,29 +25,28 @@ class Meta {
     }
 
     /**
-     * Display the meta tags with the set attributes
+     * Display the meta tags with the set attributes.
+     *
      * @param string $defaults The default meta attributes
      * @return string The meta tags
      */
-    public function display($defaults = array())
+    public function display(array $defaults = array())
     {
         $metaAttributes = array_replace_recursive($defaults, $this->attributes);
         $results = array();
 
-         // Handle other custom properties.
-        foreach($metaAttributes as $name => $content) {
+        // Handle other custom properties.
+        foreach ($metaAttributes as $name => $content) {
             // $content = array_pull($metaAttributes, $name);
             $content = $this->removeFromArray($metaAttributes, $name);
 
-            if ($name === 'keywords') {
+            if ($name === "keywords") {
                 $keywords = $this->prepareKeywords($content);
-                $results[] = $this->metaTag('keywords', $keywords);
-            }
-            elseif ($this->isAssociativeArray($content)) {
+                $results[] = $this->metaTag("keywords", $keywords);
+            } elseif ($this->isAssociativeArray($content)) {
                 $results = array_merge($results, $this->processNestedAttributes($name, $content));
-            }
-            else {
-                foreach((array)$content as $con) {
+            } else {
+                foreach ((array) $content as $con) {
                     $results[] =  $this->metaTag($name, $con);
                 }
             }
@@ -54,6 +57,7 @@ class Meta {
 
     /**
      * Clears the meta attributes array.
+     *
      * @return array
      */
     public function clear()
@@ -65,6 +69,7 @@ class Meta {
 
     /**
      * Returns the current meta attributes.
+     *
      * @return array
      */
     public function getAttributes()
@@ -74,26 +79,30 @@ class Meta {
 
     /**
      * Prepares keywords and converts the array to a comma separated string if required.
+     *
      * @return string Comma separated keywords.
      */
-    private function prepareKeywords($keywords)
+    protected function prepareKeywords($keywords)
     {
-        if ($keywords === null)
+        if ($keywords === null) {
             return null;
+        }
 
-        if (is_array($keywords))
-            $keywords = implode(', ', $keywords);
+        if (is_array($keywords)) {
+            $keywords = implode(", ", $keywords);
+        }
 
         return strtolower(strip_tags($keywords));
     }
 
     /**
      * Process nested attributes recursively.
-     * @param  string $property
-     * @param  array $content
+     *
+     * @param string $property
+     * @param array $content
      * @return array An array of meta tags for the nested attributes
      */
-    private function processNestedAttributes($property, $content)
+    protected function processNestedAttributes($property, array $content)
     {
         $results = array();
 
@@ -101,13 +110,13 @@ class Meta {
             foreach ($content as $key => $value) {
                 $results = array_merge($results, $this->processNestedAttributes("{$property}:{$key}", $value));
             }
-        }
-        else {
-            foreach((array)$content as $con) {
-                if ($this->isAssociativeArray($con))
+        } else {
+            foreach ((array) $content as $con) {
+                if ($this->isAssociativeArray($con)) {
                     $results = array_merge($results, $this->processNestedAttributes($property, $con));
-                else
-                     $results[] =  $this->metaTag($property, $con);
+                } else {
+                    $results[] = $this->metaTag($property, $con);
+                }
             }
         }
 
@@ -116,21 +125,23 @@ class Meta {
 
     /**
      * Determines if an array is associative.
-     * @param  string  $value
+     *
+     * @param string $value
      * @return boolean
      */
-    private function isAssociativeArray($value)
+    protected function isAssociativeArray(array $value)
     {
-        return is_array($value) && (bool)count(array_filter(array_keys($value), 'is_string'));
+        return (bool) count(array_filter(array_keys($value), "is_string"));
     }
 
     /**
      * Returns a meta tag with the given name and content.
-     * @param  string $name The name of the meta tag
-     * @param  string $content  The meta tag content
-     * @return string           The constructed meta tag
+     *
+     * @param string $name The name of the meta tag
+     * @param string $content The meta tag content
+     * @return string The constructed meta tag
      */
-    private function metaTag($name, $content)
+    protected function metaTag($name, $content)
     {
         return "<meta name=\"$name\" content=\"$content\"/>";
     }
@@ -142,7 +153,7 @@ class Meta {
      * @param string $key The key pointing to the desired value
      * @return string The value mapped to $key or null if none
      */
-    private function removeFromArray(&$array, $key)
+    protected function removeFromArray(&$array, $key)
     {
         if (array_key_exists($key, $array)) {
             $val = $array[$key];
@@ -150,6 +161,7 @@ class Meta {
             return $val;
         }
 
-       return null;
-   }
+        return null;
+    }
 }
+
