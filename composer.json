@@ -1,14 +1,19 @@
 {
-    "name": "ryannielson/meta",
+    "name": "mattyg/meta",
     "description": "A package that makes it easy to add meta tags to your views.",
     "keywords": ["meta", "view"],
-    "homepage": "https://github.com/RyanNielson/meta",
+    "homepage": "https://github.com/djmattyg007/meta",
     "license": "MIT",
     "authors": [
         {
             "name": "Ryan Nielson",
             "email": "ryan.nielson@gmail.com",
             "homepage": "http://nielson.io"
+        },
+        {
+            "name": "Matthew Gamble",
+            "homepage": "http://www.matthewgamble.net",
+            "role": "Developer"
         }
     ],
     "require": {
