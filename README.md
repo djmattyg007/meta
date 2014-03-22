@@ -1,7 +1,7 @@
 #Meta
 
 A package that makes it easy to add meta tags to your views.
-This is a fork of Ryan Nelson's original package that does not include any framework-specific code.
+This is a fork of Ryan Nielson's original package that does not include any framework-specific code.
 
 This package will work in any PHP application.
 
