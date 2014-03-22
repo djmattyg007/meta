@@ -40,7 +40,7 @@ class Meta
     /**
      * Display the meta tags with the set attributes.
      *
-     * @param string $defaults The default meta attributes
+     * @param array $defaults The default meta attributes
      * @return string The meta tags
      */
     public function display(array $defaults = array())
