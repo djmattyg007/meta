@@ -5,11 +5,24 @@ namespace RyanNielson\Meta;
 class Meta
 {
     /**
+     * @var bool
+     */
+    protected $html5;
+
+    /**
      * The current stored meta attributes to be rendered at a later stage.
      *
      * @var array
      */
     protected $attributes = array();
+
+    /**
+     * @param bool $html5 Whether or not to self-close generated meta tags
+     */
+    public function __construct($html5 = true)
+    {
+        $this->html5 = $html5;
+    }
 
     /**
      * Sets the meta attributes.
@@ -143,7 +156,11 @@ class Meta
      */
     protected function metaTag($name, $content)
     {
-        return "<meta name=\"$name\" content=\"$content\"/>";
+        $tag = "<meta name=\"$name\" content=\"$content\"";
+        if ($this->html5 === false) {
+            $tag .= "/";
+        }
+        return $tag . ">";
     }
 
     /**
