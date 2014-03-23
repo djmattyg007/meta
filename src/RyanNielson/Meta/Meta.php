@@ -60,7 +60,7 @@ class Meta
                 $results = array_merge($results, $this->processNestedAttributes($name, $content));
             } else {
                 foreach ((array) $content as $con) {
-                    $results[] =  $this->metaTag($name, $con);
+                    $results[] = $this->metaTag($name, $con);
                 }
             }
         }
