@@ -50,7 +50,6 @@ class Meta
 
         // Handle other custom properties.
         foreach ($metaAttributes as $name => $content) {
-            // $content = array_pull($metaAttributes, $name);
             $content = $this->removeFromArray($metaAttributes, $name);
 
             if ($name === "keywords") {
