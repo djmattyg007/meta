@@ -123,7 +123,7 @@ class Meta
                 $results = array_merge($results, $this->processNestedAttributes("{$property}:{$key}", $value));
             }
         } else {
-            foreach ((array) $content as $con) {
+            foreach ($content as $con) {
                 if ($this->isAssociativeArray($con)) {
                     $results = array_merge($results, $this->processNestedAttributes($property, $con));
                 } else {
