@@ -167,7 +167,7 @@ class Meta
      *
      * @param array $arr The input array
      * @param string $key The key pointing to the desired value
-     * @return string The value mapped to $key or null if none
+     * @return mixed The value mapped to $key or null if none
      */
     protected function removeFromArray(&$array, $key)
     {
