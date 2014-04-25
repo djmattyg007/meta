@@ -55,7 +55,7 @@ class Meta
             if ($name === "keywords") {
                 $keywords = $this->prepareKeywords($content);
                 $results[] = $this->metaTag("keywords", $keywords);
-            } elseif ($this->isAssociativeArray($content)) {
+            } elseif (is_array($content) && $this->isAssociativeArray($content)) {
                 $results = array_merge($results, $this->processNestedAttributes($name, $content));
             } else {
                 foreach ((array) $content as $con) {
