@@ -75,7 +75,6 @@ class Meta
     public function clear()
     {
         $this->attributes = array();
-
         return $this->attributes;
     }
 
@@ -92,6 +91,7 @@ class Meta
     /**
      * Prepares keywords and converts the array to a comma separated string if required.
      *
+     * @param array|string $keywords
      * @return string Comma separated keywords.
      */
     protected function prepareKeywords($keywords)
@@ -165,7 +165,7 @@ class Meta
     /**
      * Removes an item from the array and returns its value.
      *
-     * @param array $arr The input array
+     * @param array $array The input array
      * @param string $key The key pointing to the desired value
      * @return mixed The value mapped to $key or null if none
      */
