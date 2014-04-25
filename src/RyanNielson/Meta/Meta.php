@@ -138,7 +138,7 @@ class Meta
     /**
      * Determines if an array is associative.
      *
-     * @param string $value
+     * @param array $value
      * @return boolean
      */
     protected function isAssociativeArray(array $value)
