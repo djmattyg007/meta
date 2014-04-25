@@ -7,7 +7,7 @@ This package will work in any PHP application.
 
 ## Installation
 
-Run the following Composer command in your terminal, or simply add `"mattyg/meta": "2.0.*"` to your composer.json file:
+Run the following Composer command in your terminal, or simply add `"mattyg/meta": "2.1.*"` to your composer.json file:
 
     composer require mattyg/meta
 
